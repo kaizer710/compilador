@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class nino
 { 
    static ListaVariables li =new ListaVariables();
-//este es un cambio a otro cambio más
+//este es un cambio
    
    static Variables va =new Variables();
    public static void main(String[]chivas)throws IOException 
