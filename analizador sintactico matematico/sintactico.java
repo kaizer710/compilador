@@ -4,16 +4,19 @@ public class sintactico
    //Creación de arreglo para las producciones matematicas
    static String mat[][]=new String [9][2];
    //Se crea la tabla para la gramatica 
-   static String tabla[][]=new String [16][12];
+   static String tabla[][]=new String [17][12];
+   // variables para la cadena
+   static String cad, cad2;
+   static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
    public static void main (String args[]) throws IOException
    {
-      BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+     //BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
       
       analisisMatematico();
    
    }
    
-   public static void analisisMatematico()
+   public static void analisisMatematico()throws IOException
    {
       //producciones matematicas 
       mat[0][0]="E";mat[0][1]="6";
@@ -34,8 +37,9 @@ public class sintactico
          {
             System.out.print (mat[x][y]);
          }
+         System.out.println("");
       }   
-
+   
       tabla [0][0]="d5"; tabla [0][1]="d6";tabla [0][2]=" ";tabla [0][3]=" ";tabla [0][4]=" ";tabla [0][5]=" ";tabla [0][6]="d4";tabla [0][7]=" ";tabla [0][8]=" ";tabla [0][9]="1";tabla [0][10]="2";tabla [0][11]="3";
       tabla [1][0]=" ";tabla[1][1]=" ";tabla[1][2]="d7";tabla[1][3]="d8";tabla[1][4]=" ";tabla[1][5]=" "; tabla[1][6]=" "; tabla[1][7]=" ";tabla[1][8]="acept";tabla[1][9]=" ";tabla[1][10]=" ";tabla[1][11]=" ";
       tabla [2][0]=" ";tabla [2][1]=" ";tabla [2][2]="r2";tabla [2][3]="r2";tabla [2][4]="d9";tabla [2][5]="d10";tabla [2][6]=" ";tabla [2][7]="r2";tabla [2][8]="r2";tabla [2][9]=" ";tabla [2][10]=" ";tabla [2][11]=" ";
@@ -53,8 +57,39 @@ public class sintactico
       tabla [14][0]=" ";tabla [14][1]=" ";tabla [14][2]="r4";tabla [14][3]="r4";tabla [14][4]="r4";tabla [14][5]="r4";tabla [14][6]=" ";tabla [14][7]="r4";tabla [14][8]="r4";tabla [14][9]=" ";tabla [14][10]=" ";tabla [14][11]=" ";
       tabla [15][0]=" ";tabla [15][1]=" ";tabla [15][2]="r5";tabla [15][3]="r5";tabla [15][4]="r5";tabla [15][5]="r5";tabla [15][6]=" ";tabla [15][7]="r5";tabla [15][8]="r5";tabla [15][9]=" ";tabla [15][10]=" ";tabla [15][11]=" ";
       tabla [16][0]=" ";tabla [16][1]=" ";tabla [16][2]="r7";tabla [16][3]="r7";tabla [16][4]="r7";tabla [16][5]="r7";tabla [16][6]=" ";tabla [16][7]="r7";tabla [16][8]="r7";tabla [16][9]=" ";tabla [16][10]=" ";tabla [16][11]=" ";
-
+   
+      //Captura de cadena 
+      System.out.println("Ingrese la cadena");
+      cad=br.readLine();
+      cad = cad+"$"; //se hace una contatenación de $ para la cadena
+      cad2="";//se inicializa variable
       
+      //ciclo para separar id o terminales
+      for(int x=0;x<cad.length();x++)
+      {
+         if(cad.charAt(x)=='i'|cad.charAt(x)=='I')
+         {
+            cad2+=cad.charAt(x);
+            cad2+=cad.charAt(x+1);
+            cad2+=" ";
+            x++;
+         }
+         else if (cad.charAt(x)=='n'&&cad.charAt(x+1)=='u')
+         {
+            cad2+=cad.charAt(x);
+            cad2+=cad.charAt(x+1);
+            cad2+=cad.charAt(x+2);
+            cad2+=" ";
+            x+=2;	
+         }
+         else
+         {
+            cad2+=cad.charAt(x);
+            cad2+=" ";
+         }
+      }
+   
+   
    }
    
 }
