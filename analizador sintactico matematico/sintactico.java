@@ -35,8 +35,13 @@ public class sintactico
             System.out.print (mat[x][y]);
          }
       }   
-      
+
+      tabla[0][0]="d5"; tabla [0][1]="d6";tabla [0][2]=" ";tabla [0][3]=" ";tabla [0][4]=" ";tabla [0][5]=" ";tabla [0][6]="d4";tabla [0][7]=" ";tabla [0][8]=" ";tabla [0][9]="1";tabla [0][10]="2";tabla [0][11]="3";
+      tabla [1][0]=" ";tabla[1][1]=" ";tabla[1][2]="d7";tabla[1][3]="d8";tabla[1][4]=" ";tabla[1][5]=" "; tabla[1][6]=" "; tabla[1][7]=" ";tabla[1][8]="acept";tabla[1][9]=" ";tabla[1][10]=" ";tabla[1][11]=" ";
+      tabla [2][0]=" ";tabla [2][1]=" ";tabla [2][2]="r2";tabla [2][3]="r2";tabla [2][4]="d9";tabla [2][5]="d10";tabla [2][6]=" ";
    }
    
-   
 }
+
+   
+   
