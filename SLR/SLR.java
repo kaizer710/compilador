@@ -183,7 +183,7 @@ public class SLR
             insertar(""+a);insertar(""+prima(t[s][a]));
             System.out.println("es desplazar"+prima(t[s][a]));
             if(cont<cadena.length)
-            {cont++;}
+            {cont++;}//avanza en la cadena 
             
             a=accion(cadena[cont]);
          	

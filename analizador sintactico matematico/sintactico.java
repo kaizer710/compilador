@@ -7,6 +7,15 @@ public class sintactico
    static String tabla[][]=new String [17][12];
    // variables para la cadena
    static String cad, cad2;
+   static String ar_cadena[];
+   static int cont=0;
+   static int banderita=0;
+   static int a,s,A;
+   //Creación de lista enlazada 
+   static nodo nuev=null;
+   static nodo ini=null;
+   static nodo p,q=null;
+   static nodo n;
    static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
    public static void main (String args[]) throws IOException
    {
@@ -14,7 +23,7 @@ public class sintactico
       
       analisisMatematico();
    
-   }
+   }//fin main
    
    public static void analisisMatematico()throws IOException
    {
@@ -67,14 +76,14 @@ public class sintactico
       //ciclo para separar id o terminales
       for(int x=0;x<cad.length();x++)
       {
-         if(cad.charAt(x)=='i'|cad.charAt(x)=='I')
+         if(cad.charAt(x)=='i'|cad.charAt(x)=='I')//verifica si es id
          {
             cad2+=cad.charAt(x);
             cad2+=cad.charAt(x+1);
             cad2+=" ";
             x++;
          }
-         else if (cad.charAt(x)=='n'&&cad.charAt(x+1)=='u')
+         else if (cad.charAt(x)=='n'&&cad.charAt(x+1)=='u') //verifica si es num
          {
             cad2+=cad.charAt(x);
             cad2+=cad.charAt(x+1);
@@ -82,17 +91,157 @@ public class sintactico
             cad2+=" ";
             x+=2;	
          }
-         else
+         else //se verifica si es simbolo terminal
          {
             cad2+=cad.charAt(x);
             cad2+=" ";
          }
+      }//Fin de ciclo for 
+   
+      ar_cadena=cad2.split("\\s");//ya separado la cadena con espacios pasa cada elemento a un arreglo
+      System.out.println("Elementos separados");
+      for (int x=0;x<ar_cadena.length;x++)
+      {
+         System.out.println(ar_cadena[x]);
+      
+      }
+   //Algoritmo SLR
+      boolean aceptar=false;
+      cont=0;
+      insertar ("0");
+      while (aceptar==false)
+      {
+         s=Integer.parseInt(p.dato);
+         a=elementos_tabla(ar_cadena[cont]);
+         System.out.println("s= " +s + "a="+a);
+      
+         //verifica si es despalzar o reducción
+         if(tabla[s][a].startsWith("d"))
+         {
+            insertar(""+a);insertar(""+eseprima(tabla[s][a]));
+            System.out.println("d"+eseprima(tabla[s][a]));
+            if (cont<ar_cadena.length)
+            {
+               cont++;
+            }
+         
+         }
+         else if(tabla[s][a].startsWith("r"))
+         {
+            int h=(eseprima(tabla[s][a])-1);
+         	//variable para desplazar los datos
+            int desp=Integer.parseInt(p[h][1]);
+            
+            for(int x=0;x<desp;x++)
+            {
+            
+            }
+         }
+      
       }
    
-   
+   }//fin metodo analisis matematico
+
+   public static void insertar(String dato)
+   {
+      nodo nuevo=new nodo();
+      nuevo.dato=dato;
+      nuevo.enlace=null;
+      if(ini==null)
+      {
+         ini=nuev;
+      }
+      else
+      {
+         p.enlace=nuevo;
+         p=nuevo;
+      }
    }
    
-}
+   //metodo para verificar la tabla 
+   public static int elementos_tabla (String dato)
+   {
+      int vr=0;
+      if (dato.startsWith("id"))
+         vr=0;
+      else if(dato.equals("num"))
+         vr=1;
+      else if (dato.equals("+"))
+         vr=2;
+      else if (dato.equals("-"))
+         vr=3;
+      else if (dato.equals("*"))
+         vr=4;
+      else if (dato.equals("/"))
+         vr=5;
+      else if (dato.equals("("))
+         vr=6;
+      else if (dato.equals(")"))
+         vr=7;
+      else if (dato.equals("$"))
+         vr=8;
+      else if (dato.equals("E"))
+         vr=9;
+      else if (dato.equals("T"))
+         vr=10;
+      else if (dato.equals("F"))
+         vr=11;
+   
+      	
+      return vr;
+   }
 
-   
-   
+
+   //metodo para s prima
+   public static int eseprima(String dato)
+   {
+      int red=0;
+      String cadena="";
+      for(int x=1;x<dato.length();x++)
+      {
+         cadena+=dato.charAt(x);
+      }
+      red=Integer.parseInt(cadena);
+      return red;
+   }
+
+   public static void eliminar_dato(String dato)
+   {
+      if (ini==null)
+         System.out.println("No hay elementos");
+      else
+      {
+         n=ini;
+         banderita=0;
+         while(n!=null & banderita==0)
+         {
+            if(n.dato==dato)
+               banderita=1;
+            else
+            {
+               q=n;
+               n=n.enlace;
+            }
+         }
+         if (banderita==1)
+         {
+            if(n==ini)
+            {
+               ini=ini.enlace;
+            }
+            else
+            {
+               q.enlace=n.enlace;
+            }
+         
+            if(n.enlace==null)
+            {
+               p=q;
+            }
+            n=null;
+            System.out.println("Dato "+dato	+ " borrado");
+         }
+      
+      }
+   }
+}
