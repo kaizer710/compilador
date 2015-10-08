@@ -249,17 +249,24 @@ public class SLR
             if(n2.dato==dato)
                ban=1;
             else
-            {q2=n2;  n2=n2.enlace;}
+            {q2=n2; 
+             n2=n2.enlace;}
          }
       
          if (ban==1)
          {
             if(n2==inicio2)
-            {inicio2=inicio2.enlace;}
+            {
+               inicio2=inicio2.enlace;
+            }
             else
-            {q2.enlace=n2.enlace;}
+            {
+               q2.enlace=n2.enlace;
+            }
             if(n2.enlace==null)
-            {p2=q2;}
+            {
+               p2=q2;
+            }
             n2=null;
             System.out.println("el dato "+dato+" a sido borado de lista");
          

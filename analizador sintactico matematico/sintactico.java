@@ -130,32 +130,48 @@ public class sintactico
          {
             int h=(eseprima(tabla[s][a])-1);
          	//variable para desplazar los datos
-            int desp=Integer.parseInt(p[h][1]);
+            int desp=Integer.parseInt(mat[h][1]);
             
             for(int x=0;x<desp;x++)
             {
-            
+               eliminar_dato(p.dato);
             }
+            s=Integer.parseInt(p.dato);
+            A=elementos_tabla(mat[h][0]);
+            insertar(""+A);
+            insertar (""+tabla[s][A]);
+            System.out.println("s="+p.dato);
+            System.out.println("A="+A);
          }
-      
+         else if (tabla[s][a].startsWith("acept"))
+         {
+            System.out.println("Cadena aceptada"); aceptar=true;
+         }
+         else
+         {
+            System.out.println("Error de cadena"); aceptar=true;
+         }
+            
+         
+        
       }
    
    }//fin metodo analisis matematico
 
    public static void insertar(String dato)
    {
-      nodo nuevo=new nodo();
-      nuevo.dato=dato;
-      nuevo.enlace=null;
+      nodo nuev=new nodo();
+      nuev.dato=dato;
+      nuev.enlace=null;
       if(ini==null)
       {
          ini=nuev;
       }
       else
       {
-         p.enlace=nuevo;
-         p=nuevo;
+         p.enlace=nuev;
       }
+      p=nuev;
    }
    
    //metodo para verificar la tabla 
